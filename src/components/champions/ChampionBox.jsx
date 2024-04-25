@@ -34,6 +34,7 @@ const Styled = styled.div`
         .bot{
             display: flex;
             gap: 10px;
+            justify-content: flex-end;
         }
     }
 `
@@ -57,7 +58,7 @@ export function ChampionBox({ champ }){
                     </span>
                 </div>
                 <div className='bot'>
-                    <span>Vitórias: {champ.wins}</span>
+                    <span>Jogos: {champ.matches}</span>
                     <span>DP: {champ.same}</span>
                     <span>Tx. Vitórias: {champ.winRate.toFixed(2)}%</span>
                 </div>
