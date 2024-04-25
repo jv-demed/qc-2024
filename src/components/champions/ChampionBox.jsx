@@ -57,8 +57,8 @@ export function ChampionBox({ champ }){
                     </span>
                 </div>
                 <div className='bot'>
-                    <span>Jogos: {champ.matches}</span>
                     <span>Vitórias: {champ.wins}</span>
+                    <span>DP: {champ.same}</span>
                     <span>Tx. Vitórias: {champ.winRate.toFixed(2)}%</span>
                 </div>
             </div>

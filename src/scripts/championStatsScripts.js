@@ -14,7 +14,7 @@ function getResultsStats(matches, champList){
         let loses = 0;
         let same = 0;
         matches.forEach(m => {
-            if(m.campeao1 == m.campeao2){
+            if(champ.key == m.campeao1 && m.campeao1 == m.campeao2){
                 same++;
             }else{
                 if(m.resultado == 1){
