@@ -1,14 +1,17 @@
 'use client'
 
-import { getChampions } from "@/services/riotServices";
-import { useEffect, useState } from "react";
+import { getChampions } from '@/scripts/championScripts';
+import { useEffect, useState } from 'react';
 
-export default function Home() {
+export default function Home(){
+
     const [champs, setChamps] = useState([]);
 
     useEffect(() => {
         getChampions().then(res => setChamps(res));
     }, []);
+
+    console.log(champs);
 
     return(
         <main>
@@ -16,7 +19,7 @@ export default function Home() {
                 {champs.map(champ => {
                     return(
                         <li key={champ.id}>
-                            <img src={`https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/${champ.name}.png`} />
+                            <img src={`https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/${champ.image.full}`} />
                             {champ.name}
                         </li>
                     )
