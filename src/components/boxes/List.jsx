@@ -1,3 +1,4 @@
+import { screens } from '@/assets/screens';
 import styled from 'styled-components';
 
 export const List = styled.ul`
@@ -8,4 +9,7 @@ export const List = styled.ul`
     overflow: auto;
     padding-right: 8px;
     width: 100%;
+    @media(max-width: ${screens.mobile.px}){
+        gap: 5px
+    }
 `
