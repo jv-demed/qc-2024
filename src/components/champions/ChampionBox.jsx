@@ -1,6 +1,8 @@
-import { palette } from '@/assets/palette';
-import { convertClass } from '@/scripts/classesScripts';
 import styled from 'styled-components';
+import { useMedia } from '@/hooks/useMedia';
+import { convertClass } from '@/scripts/classesScripts';
+import { palette } from '@/assets/palette';
+import { screens } from '@/assets/screens';
 
 const Styled = styled.div`
     border: 1px solid ${palette.champBoxes.border};
@@ -40,6 +42,9 @@ const Styled = styled.div`
 `
 
 export function ChampionBox({ champ }){
+
+    const isMobile = useMedia(screens.mobile.num);
+
     return(
         <Styled>
             <div className='champ-image'>
@@ -58,9 +63,9 @@ export function ChampionBox({ champ }){
                     </span>
                 </div>
                 <div className='bot'>
-                    <span>Jogos: {champ.matches}</span>
+                    <span>{isMobile ? 'J' : 'Jogos'}: {champ.matches}</span>
                     <span>DP: {champ.same}</span>
-                    <span>Tx.Vit: {champ.winRate.toFixed(2)}%</span>
+                    <span>Tx.Vit: {champ.winRate.toFixed(1)}%</span>
                 </div>
             </div>
         </Styled>

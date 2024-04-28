@@ -1,5 +1,5 @@
-import { getBasicInfoChampions } from './championScripts';
 import { getMatches } from './matchScripts';
+import { getBasicInfoChampions } from './championScripts';
 
 export async function getChampionsStats(){
     const matches = await getMatches('*');
