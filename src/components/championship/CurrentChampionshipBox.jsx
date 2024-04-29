@@ -20,7 +20,7 @@ export function CurrentChampionshipBox(){
 
     const [championship, setChampionship] = useState();
     const [gameData, setGameData] = useState();
-    const [playerList, setPlayerList] = useState([]);
+    const [playerList, setPlayerList] = useState();
     const [current, setCurrent] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
