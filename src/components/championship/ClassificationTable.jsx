@@ -15,11 +15,8 @@ const Styled = styled.section`
     .change-header{
         border-bottom: 1px solid ${palette.elements.divisorBorder};
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         padding: 10px 0;
-        span{
-            cursor: pointer;
-        }
     }
     .table{
         header{
@@ -55,7 +52,6 @@ const Styled = styled.section`
 export function ClassificationTable({ infos, gameData, playerList, current }){
 
     const [classification, setClassification] = useState(playerList);
-    const [mode, setMode] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
@@ -70,18 +66,11 @@ export function ClassificationTable({ infos, gameData, playerList, current }){
         <Styled>
             {!isLoading && <>
                 <header className='change-header'>
-                    {infos.regular && <span
-                        onClick={() => mode != 0 && setMode(prev => prev-1)}
-                    >
+                    {infos.regular && <span>
                         Classificação
                     </span>}
-                    {isPlayoffs(infos) && <span
-                        onClick={() => mode != 1 && setMode(prev => prev+1)}
-                    >
-                        Playoffs
-                    </span>}
                 </header>
-                {mode == 0 && <section className='table'>
+                <section className='table'>
                     <header>
                         <div>P</div>
                         <div>V</div>
@@ -103,10 +92,7 @@ export function ClassificationTable({ infos, gameData, playerList, current }){
                             )
                         })}
                     </ul>
-                </section>}
-                {mode == 1 && <section className='playoffs'>
-                    <span>Em construção</span>    
-                </section>}
+                </section>
             </>}
             {isLoading && <Loading />}
         </Styled>
