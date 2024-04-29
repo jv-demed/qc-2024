@@ -3,6 +3,7 @@ import { useMedia } from '@/hooks/useMedia';
 import { convertClass } from '@/scripts/classesScripts';
 import { palette } from '@/assets/palette';
 import { screens } from '@/assets/screens';
+import { apiConfig } from '@/assets/apiConfig';
 
 const Styled = styled.div`
     border: 1px solid ${palette.champBoxes.border};
@@ -49,7 +50,7 @@ export function ChampionBox({ champ }){
         <Styled>
             <div className='champ-image'>
                 <img 
-                    src={champ.image} 
+                    src={`${apiConfig.imgUrl}${champ.image.full}`} 
                     alt={champ.name} 
                 />
             </div>

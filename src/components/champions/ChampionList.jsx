@@ -26,8 +26,9 @@ export function ChampionList(){
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        getChampionsStats()
-        .then(res => setChamps(sortChampWinRate(res)));
+        getChampionsStats().then(res => {
+            setChamps(sortChampWinRate(res));
+        });
     }, []);
 
     useEffect(() => {

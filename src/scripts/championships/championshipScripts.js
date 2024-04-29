@@ -61,45 +61,47 @@ export async function getClassification(current, gameData, playerList){
         }
         gameData.forEach((r, i) => {
             current <= (i+1) && r.forEach(c => {
-                if(c[0].jogador1 == p.id && c[1].jogador2 == p.id){
-                    if(c[0].resultado == 1 && c[2].resultado == 2){
-                        stats.points += 3;
-                    }else if(c[0].resultado == 1 || c[1].resultado == 2){
-                        stats.points += 1;
+                if(c[0] && c[1] && c[2]){
+                    if(c[0].jogador1 == p.id && c[1].jogador2 == p.id){
+                        if(c[0].resultado == 1 && c[2].resultado == 2){
+                            stats.points += 3;
+                        }else if(c[0].resultado == 1 || c[1].resultado == 2){
+                            stats.points += 1;
+                        }
+                    }else if(c[0].jogador2 == p.id && c[1].jogador1 == p.id){
+                        if(c[0].resultado == 2 && c[2].resultado == 1){
+                            stats.points += 3;
+                        }else if(c[0].resultado == 2 || c[1].resultado == 1){
+                            stats.points++;
+                        }
                     }
-                }else if(c[0].jogador2 == p.id && c[1].jogador1 == p.id){
-                    if(c[0].resultado == 2 && c[2].resultado == 1){
-                        stats.points += 3;
-                    }else if(c[0].resultado == 2 || c[1].resultado == 1){
+                    if(c[2].jogador1 == p.id && c[2].resultado == 1){
+                        stats.jokers++;
+                        stats.points++;
+                    }else if(c[2].jogador2 == p.id && c[2].resultado == 2){
+                        stats.jokers++;
                         stats.points++;
                     }
-                }
-                if(c[2].jogador1 == p.id && c[2].resultado == 1){
-                    stats.jokers++;
-                    stats.points++;
-                }else if(c[2].jogador2 == p.id && c[2].resultado == 2){
-                    stats.jokers++;
-                    stats.points++;
-                }
-                c.forEach(match => {
-                    if(match.jogador1 == p.id){
-                        match.resultado && stats.matches++;
-                        if(match.resultado == 1){
-                            !match.jokers && stats.wins++;
-                            match.metodo == 1 && stats.kills++
-                            match.metodo == 2 && stats.farm++
-                            match.metodo == 3 && stats.towerd++
+                    c.forEach(match => {
+                        if(match.jogador1 == p.id){
+                            match.resultado && stats.matches++;
+                            if(match.resultado == 1){
+                                !match.jokers && stats.wins++;
+                                match.metodo == 1 && stats.kills++
+                                match.metodo == 2 && stats.farm++
+                                match.metodo == 3 && stats.towerd++
+                            }
+                        }else if(match.jogador2 == p.id){
+                            match.resultado && stats.matches++;
+                            if(match.resultado == 2){
+                                !match.jokers && stats.wins++;
+                                match.metodo == 1 && stats.kills++
+                                match.metodo == 2 && stats.farm++
+                                match.metodo == 3 && stats.towerd++
+                            }
                         }
-                    }else if(match.jogador2 == p.id){
-                        match.resultado && stats.matches++;
-                        if(match.resultado == 2){
-                            !match.jokers && stats.wins++;
-                            match.metodo == 1 && stats.kills++
-                            match.metodo == 2 && stats.farm++
-                            match.metodo == 3 && stats.towerd++
-                        }
-                    }
-                });
+                    });
+                }
             });
         });
         return stats;

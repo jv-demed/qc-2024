@@ -1,11 +1,11 @@
 import { getMatches } from '../matchScripts';
-import { getBasicInfoChampions } from './championScripts';
+import { getInfoChampions } from './championScripts';
 
 export async function getChampionsStats(){
     const matches = await getMatches('*');
     const champList = getChampList(matches);
     const resultsStats = getResultsStats(matches, champList);
-    return await getBasicInfoChampions(resultsStats);
+    return await getInfoChampions(resultsStats);
 }
 
 function getResultsStats(matches, champList){
@@ -14,20 +14,22 @@ function getResultsStats(matches, champList){
         let loses = 0;
         let same = 0;
         matches.forEach(m => {
-            if(champ.key == m.campeao1 && m.campeao1 == m.campeao2){
-                same++;
-            }else{
-                if(m.resultado == 1){
-                    if(m.campeao1 == champ.key){
-                        wins++;
-                    }else if(m.campeao2 == champ.key){
-                        loses++;
-                    }
-                }else if(m.resultado == 2){
-                    if(m.campeao2 == champ.key){
-                        wins++;
-                    }else if(m.campeao1 == champ.key){
-                        loses++;
+            if(m.resultado){
+                if(champ.key == m.campeao1 && m.campeao1 == m.campeao2){
+                    same++;
+                }else{
+                    if(m.resultado == 1){
+                        if(m.campeao1 == champ.key){
+                            wins++;
+                        }else if(m.campeao2 == champ.key){
+                            loses++;
+                        }
+                    }else if(m.resultado == 2){
+                        if(m.campeao2 == champ.key){
+                            wins++;
+                        }else if(m.campeao1 == champ.key){
+                            loses++;
+                        }
                     }
                 }
             }
