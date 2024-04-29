@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { getChampionsStats } from '@/scripts/championStatsScripts';
-import { sortChampWinRate } from '@/scripts/championOrdinationScripts';
+import { getChampionsStats } from '@/scripts/champions/championStatsScripts';
+import { sortChampWinRate } from '@/scripts/champions/championOrdinationScripts';
 import { screens } from '@/assets/screens';
 import { List } from '@/components/boxes/List';
 import { TextInput } from '@/components/inputs/TextInput';

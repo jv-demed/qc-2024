@@ -1,3 +1,4 @@
+import { screens } from '@/assets/screens';
 import styled from 'styled-components';
 
 const Styled = styled.input`
@@ -8,6 +9,9 @@ const Styled = styled.input`
     outline: none;
     padding: 0 5px;
     width: 100%;
+    @media(max-width: ${screens.mobile.px}){
+        height: 50px;
+    }
 `
 
 export function TextInput({ text, setText }){

@@ -1,0 +1,81 @@
+ldb x ernest
+tanque
+bans1 Singed, Blitz, Zac
+bans2 Cho'Gath, Malphite, Jarvan IV
+nautilus x maokai
+win 1
+met 1
+
+ernest x ldb
+suporte
+bans1 TK, Thresh, Yummi
+bans2 Rakan, Pyke, Sona
+lulu x janna
+win 1
+met 1
+
+ernest x ldb
+assassino
+bans1 Qiyanna, Yone, Nocturne
+bans2 Ekko, Shaco, LeBlanc
+talon x fizz
+win 1
+met 1
+
+
+iponema x camelo
+tanque
+bans1 Alistar, Ksante, Sejuani
+bans2 Cho, Zac, Rell
+shen x malphite
+win 2
+met 1
+
+camelo x iponema
+lutador
+bans1 Yorick, Briar, Tryndamere
+bans2 Darius, Riven, Skarner
+Gangplank x Wukong
+win 2
+met 1
+
+camelo x iponema
+assassino
+bans1 LeBlanc, Fizz, Naafiri
+bans2 Viego, Nidalee, Khazix
+Shaco x Akali
+win 2
+met 1
+       
+
+noob x freira
+suporte
+bans1 Tk, pyke, zilean
+bans2 lulu, sona, janna
+rakan x renata
+win 2
+met 1
+
+freira x noob
+atirador
+bans1 lucian, caitlyn, mf
+bans2 corki, teemo, graves
+senna x kog
+win 2
+met 1
+
+noob x freira
+tanque
+bans1 blitz, singed, rammus
+bans2 zac, ornn, nautilus
+nunu x poppy
+win 2
+met 1
+
+j x j
+class
+bans1 
+bans2 
+c x c
+win 
+met 
