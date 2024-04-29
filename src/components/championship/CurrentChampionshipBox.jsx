@@ -5,6 +5,7 @@ import { getClassification, getCurrentChampionship, getGameData, getRounds } fro
 import { ClassificationTable } from './ClassificationTable';
 import { Calendar } from './Calendar';
 import { Loading } from '../elements/Loading';
+import { getPlayerList } from '@/scripts/playerScripts';
 
 const Styled = styled.section`
     display: flex;
@@ -19,6 +20,7 @@ export function CurrentChampionshipBox(){
 
     const [championship, setChampionship] = useState();
     const [gameData, setGameData] = useState();
+    const [playerList, setPlayerList] = useState([]);
     const [current, setCurrent] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -35,12 +37,18 @@ export function CurrentChampionshipBox(){
     }, [championship]);
 
     useEffect(() => {
+        championship && getPlayerList(championship.jogadores).then(res => {
+            setPlayerList(res);
+        });
+    }, [championship]);
+
+    useEffect(() => {
         gameData && setCurrent(gameData.length);
     }, [gameData]);
 
     useEffect(() => {
-        championship && gameData && current && setIsLoading(false);
-    }, [championship, gameData, current]);
+        championship && playerList && gameData && current && setIsLoading(false);
+    }, [championship, playerList, gameData, current]);
 
     return(
         <Styled>
@@ -48,10 +56,14 @@ export function CurrentChampionshipBox(){
                 <ClassificationTable
                     infos={championship}
                     gameData={gameData}
+                    playerList={playerList}
                     current={current}
                 />
                 <Calendar
                     infos={championship}
+                    gameData={gameData}
+                    playerList={playerList}
+                    current={current}
                     setRound={e => setCurrent(prev => prev+e)}
                 />
             </>}

@@ -1,14 +1,19 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { getPlayerList } from '@/scripts/playerScripts';
 import { getClassification, isPlayoffs } from '@/scripts/championships/championshipScripts';
 import { sortPlayersPontuation } from '@/scripts/championships/championshipOrdinationScripts';
 import { screens } from '@/assets/screens';
+import { palette } from '@/assets/palette';
 import { Loading } from '../elements/Loading';
+import { PlayerClassificationBox } from './PlayerClassificationBox';
 
 const Styled = styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
-    header{
+    .change-header{
+        border-bottom: 1px solid ${palette.elements.divisorBorder};
         display: flex;
         justify-content: space-around;
         padding: 10px 0;
@@ -16,35 +21,41 @@ const Styled = styled.section`
             cursor: pointer;
         }
     }
-    table{
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        .nick{
-            width: 145px
+    .table{
+        header{
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 5px;
+            margin-bottom: 5px;
+            div{
+                display: flex;
+                justify-content: center;
+                width: 40px;
+            }
         }
-        .fix{
-            width: 30px;
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            list-style: none;
+            li:hover{
+                background-color: rgba(0,0,0,0.5);
+            }
         }
+    }
+    .playoffs{
+        text-align: center;
     }
     @media(max-width: ${screens.mobile.px}){
         
     }
 `
 
-export function ClassificationTable({ infos, gameData, current }){
+export function ClassificationTable({ infos, gameData, playerList, current }){
 
-    const [playerList, setPlayerList] = useState([]);
-    const [classification, setClassification] = useState([]);
+    const [classification, setClassification] = useState(playerList);
     const [mode, setMode] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        getPlayerList(infos.jogadores).then(res => {
-            setPlayerList(res);
-        });
-    }, []);
     
     useEffect(() => {
         playerList.length > 0 && getClassification(current, gameData, playerList)
@@ -57,7 +68,7 @@ export function ClassificationTable({ infos, gameData, current }){
     return(
         <Styled>
             {!isLoading && <>
-                <header>
+                <header className='change-header'>
                     {infos.regular && <span
                         onClick={() => mode != 0 && setMode(prev => prev-1)}
                     >
@@ -69,28 +80,32 @@ export function ClassificationTable({ infos, gameData, current }){
                         Playoffs
                     </span>}
                 </header>
-                {mode == 0 && <table>
-                    <tr>
-                        <th></th>
-                        <th className='nick'></th>
-                        <th className='fix'>P</th>
-                        <th className='fix'>V</th>
-                        <th className='fix'>JK</th>
-                        <th className='fix'>J</th>
-                    </tr>
-                    {classification.map((player, i) => {
-                        return(
-                            <tr key={player.id}>
-                                <td>{i+1}</td>
-                                <td className='nick'>{player.nick}</td>
-                                <td className='fix'>{player.points}</td>
-                                <td className='fix'>{player.wins}</td>
-                                <td className='fix'>{player.jokers}</td>
-                                <td className='fix'>{player.matches}</td>
-                            </tr>
-                        )
-                    })}
-                </table>}
+                {mode == 0 && <section className='table'>
+                    <header>
+                        <div>P</div>
+                        <div>V</div>
+                        <div>JK</div>
+                        <div>J</div>
+                    </header>
+                    <ul>
+                        {classification.map((player, i) => {
+                            return(
+                                <PlayerClassificationBox 
+                                    key={player.id}
+                                    position={i+1}
+                                    player={player}
+                                    numClass={{
+                                        direct: infos.classificacaoDireta,
+                                        total: infos.classificacao
+                                    }}
+                                />
+                            )
+                        })}
+                    </ul>
+                </section>}
+                {mode == 1 && <section className='playoffs'>
+                    <span>Em construção</span>    
+                </section>}
             </>}
             {isLoading && <Loading />}
         </Styled>

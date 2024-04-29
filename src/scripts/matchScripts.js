@@ -19,3 +19,8 @@ export async function getMatchesByConfront(idConfront){
         console.log(error);
     }return data;
 }
+
+export function getPlayerName(id, list){
+    const player = list.find(player => player.id == id);
+    return player.nick;
+}
