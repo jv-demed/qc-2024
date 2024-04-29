@@ -27,6 +27,7 @@ const Styled = styled.section`
             justify-content: flex-end;
             padding: 0 5px;
             margin-bottom: 5px;
+            width: 100%;
             div{
                 display: flex;
                 justify-content: center;

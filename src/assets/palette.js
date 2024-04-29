@@ -4,6 +4,9 @@ export const palette = {
         color: 'white',
         imgBorder: 'linear-gradient(45deg, rgb(240, 16, 240), gold)'
     },
+    confrontBoxes:{
+        border: 'white',
+    },
     elements: {
         divisorBorder: 'white',
         loading: 'white'

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { screens } from '@/assets/screens';
 import { icons } from '@/assets/icons';
 import { palette } from '@/assets/palette';
-import { MatchBox } from './MatchBox';
+import { ConfrontDisclosure } from './ConfrontDisclosure';
 
 const Styled = styled.section`
     width: 100%;
@@ -50,15 +50,13 @@ export function Calendar({ infos, playerList, gameData, current, setRound }){
             <ul>
                 {gameData.map((round, i) => {
                     if(current == i+1){
-                        return round.map(confront => {
-                            return confront.map(match => {
-                                return(
-                                    <MatchBox key={match.id} 
-                                        match={match}
-                                        playerList={playerList}
-                                    />
-                                )
-                            })
+                        return round.map((confront, i) => {
+                            return(
+                                <ConfrontDisclosure key={`c-${i+1}`}
+                                    matchList={confront}
+                                    playerList={playerList}
+                                />
+                            )
                         })
                     }
                 })}

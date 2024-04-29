@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { screens } from '@/assets/screens';
-import { getClassification, getCurrentChampionship, getGameData, getRounds } from '@/scripts/championships/championshipScripts';
-import { ClassificationTable } from './ClassificationTable';
+import { getPlayerList } from '@/scripts/playerScripts';
+import { getCurrentChampionship, getGameData } from '@/scripts/championships/championshipScripts';
 import { Calendar } from './Calendar';
 import { Loading } from '../elements/Loading';
-import { getPlayerList } from '@/scripts/playerScripts';
+import { ClassificationTable } from './ClassificationTable';
 
 const Styled = styled.section`
     display: flex;

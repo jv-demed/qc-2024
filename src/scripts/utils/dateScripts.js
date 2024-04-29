@@ -1,4 +1,4 @@
-export function formatData(date){
+export function formatDate(date){
     const part = date.split('-');
     const day = part[2];
     const month = part[1];

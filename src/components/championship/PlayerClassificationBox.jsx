@@ -11,6 +11,7 @@ const Styled = styled.li`
     justify-content: space-between;
     padding: 5px;
     .rank{
+        align-items: center;
         display: flex;
         gap: 10px;
         .position{
@@ -30,7 +31,13 @@ const Styled = styled.li`
         }
     }
     @media(max-width: ${screens.mobile.px}){
-        
+        font-size: 1.3rem;
+        .rank{
+            gap: 20px;
+            .position{
+                font-size: 1.5rem;
+            }
+        }
     }
 `
 

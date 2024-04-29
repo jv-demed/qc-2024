@@ -18,3 +18,8 @@ export async function getPlayerList(array){
     }
     return playerList;
 }
+
+export function getPlayerName(id, list){
+    const player = list.find(player => player.id == id);
+    return player.nick;
+}

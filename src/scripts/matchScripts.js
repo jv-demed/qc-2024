@@ -20,7 +20,11 @@ export async function getMatchesByConfront(idConfront){
     }return data;
 }
 
-export function getPlayerName(id, list){
-    const player = list.find(player => player.id == id);
-    return player.nick;
+export async function getConfrontById(id){
+    const {data, status, error} = await supabase
+    .from('qc-confrontos').select('*')
+    .eq('id', id);
+    if(status != 200){
+        console.log(error);
+    }return data[0];
 }
