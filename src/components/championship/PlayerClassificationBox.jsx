@@ -14,11 +14,17 @@ const Styled = styled.li`
         align-items: center;
         display: flex;
         gap: 10px;
+        overflow: hidden;
         .position{
             color: ${props => props.$color};
             font-size: 1.1rem;
             text-align: center;
             width: 20px;
+        }
+        .nick{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
     .stats{
@@ -32,6 +38,7 @@ const Styled = styled.li`
     }
     @media(max-width: ${screens.mobile.px}){
         font-size: 1.3rem;
+        height: 50px;
         .rank{
             gap: 20px;
             .position{

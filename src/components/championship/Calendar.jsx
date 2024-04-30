@@ -24,11 +24,17 @@ const Styled = styled.section`
         list-style: none;
     }
     @media(max-width: ${screens.mobile.px}){
-        
+        header{
+            align-items: center;
+            height: 50px;
+            .arrow-icon{
+                font-size: 1.4rem;
+            }
+        }
     }
 `
 
-export function Calendar({ infos, playerList, championList, gameData, current, setRound }){
+export function Calendar({ playerList, championList, gameData, current, setRound }){
     return(
         <Styled>
             <header>

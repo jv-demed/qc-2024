@@ -41,11 +41,11 @@ const Styled = styled.section`
             }
         }
     }
-    .playoffs{
-        text-align: center;
-    }
     @media(max-width: ${screens.mobile.px}){
-        
+        .change-header{
+            align-items: center;
+            height: 50px;
+        }
     }
 `
 

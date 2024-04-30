@@ -24,14 +24,18 @@ const Styled = styled.li`
         width: 100%;
         .main{
             display: flex;
+            gap: 10px;
             justify-content: space-between;
             width: 100%;
-        }
-        .nick{
-            width: 100%;
-        }
-        .player2{
-            text-align: end;
+            .nick{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 100%;
+            }
+            .player2{
+                text-align: end;
+            }
         }
     }
     .box{
@@ -45,14 +49,16 @@ const Styled = styled.li`
         .date{
             font-size: 0.7rem;
         }
-        ul{
+        .match-list{
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 8px;
         }
     }
     @media(max-width: ${screens.mobile.px}){
-        
+        .btn{
+            height: 50px;
+        }
     }
 `
 
@@ -73,9 +79,10 @@ export function ConfrontDisclosure({ matchList, playerList, championList }){
     return(
         <Styled 
             $display={isOpen ? 'flex' : 'none'}
-            onClick={() => setIsOpen(!isOpen)}
         >
-            {!isLoading && <div className='btn'>
+            {!isLoading && <div className='btn'
+                onClick={() => setIsOpen(!isOpen)}
+            >
                 <div className='main'>
                     <span className='nick'>
                         {getPlayerName(confront.jogador1, playerList)}
@@ -89,10 +96,7 @@ export function ConfrontDisclosure({ matchList, playerList, championList }){
                 {isOpen && <icons.chevronUp />}
             </div>}
             {!isLoading && <div className='box'>
-                <span className='date'>
-                    {formatDate(confront.data)}
-                </span>
-                <ul>
+                <ul className='match-list'>
                     {matchList.map(match => {
                         return(
                             <MatchBox key={match.id}
