@@ -82,6 +82,7 @@ const Styled = styled.li`
 `
 
 export function MatchBox({ match, playerList, championList }){
+    console.log(championList)
     return(
         <Styled>
             <div className='infos'>

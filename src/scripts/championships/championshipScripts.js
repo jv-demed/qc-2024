@@ -68,7 +68,7 @@ export async function getClassification(current, gameData, playerList){
                         }else if(c[0].resultado == 1 || c[1].resultado == 2){
                             stats.points += 1;
                         }
-                    }else if(c[0].jogador2 == p.id && c[1].jogador1 == p.id){
+                    }if(c[0].jogador2 == p.id && c[1].jogador1 == p.id){
                         if(c[0].resultado == 2 && c[2].resultado == 1){
                             stats.points += 3;
                         }else if(c[0].resultado == 2 || c[1].resultado == 1){
