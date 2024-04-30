@@ -9,7 +9,6 @@ export async function getChampions(){
 
 export async function getInfoChampions(champList){
     const champions = await getChampions();
-    console.log(champions);
     return champList.map(c => {
         const champ = champions.find(champ => champ.key == c.key);
         return {
