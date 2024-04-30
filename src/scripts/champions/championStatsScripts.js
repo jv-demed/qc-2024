@@ -14,22 +14,20 @@ function getResultsStats(matches, champList){
         let loses = 0;
         let same = 0;
         matches.forEach(m => {
-            if(m.resultado){
-                if(champ.key == m.campeao1 && m.campeao1 == m.campeao2){
-                    same++;
-                }else{
-                    if(m.resultado == 1){
-                        if(m.campeao1 == champ.key){
-                            wins++;
-                        }else if(m.campeao2 == champ.key){
-                            loses++;
-                        }
-                    }else if(m.resultado == 2){
-                        if(m.campeao2 == champ.key){
-                            wins++;
-                        }else if(m.campeao1 == champ.key){
-                            loses++;
-                        }
+            if(champ.key == m.campeao1 && m.campeao1 == m.campeao2){
+                same++;
+            }else{
+                if(m.resultado == 1){
+                    if(m.campeao1 == champ.key){
+                        wins++;
+                    }else if(m.campeao2 == champ.key){
+                        loses++;
+                    }
+                }else if(m.resultado == 2){
+                    if(m.campeao2 == champ.key){
+                        wins++;
+                    }else if(m.campeao1 == champ.key){
+                        loses++;
                     }
                 }
             }
@@ -48,16 +46,18 @@ function getResultsStats(matches, champList){
 function getChampList(matches){
     const champList = [];
     matches.forEach(m => {
-        if(champList.length == 0){
-            champList.push({ key: m.campeao1 });
-            if(m.campeao1 != m.campeao2){
-                champList.push({ key: m.campeao2 });
-            }
-        }else{
-            if(!champList.some(c => c.key == m.campeao1)){
+        if(m.resultado){
+            if(champList.length == 0){
                 champList.push({ key: m.campeao1 });
-            }if(!champList.some(c => c.key == m.campeao2)){
-                champList.push({ key: m.campeao2 });
+                if(m.campeao1 != m.campeao2){
+                    champList.push({ key: m.campeao2 });
+                }
+            }else{
+                if(!champList.some(c => c.key == m.campeao1)){
+                    champList.push({ key: m.campeao1 });
+                }if(!champList.some(c => c.key == m.campeao2)){
+                    champList.push({ key: m.campeao2 });
+                }
             }
         }
     });
