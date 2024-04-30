@@ -1,3 +1,4 @@
+import { apiConfig } from '@/assets/apiConfig';
 import { championsUrl } from '@/services/riotServices';
 
 export async function getChampions(){
@@ -16,4 +17,16 @@ export async function getInfoChampions(champList){
             ...champ
         };
     });
+}
+
+export function getChampionName(id, list){
+    const champ = list.find(champ => champ.key == id);
+    return champ && champ.name;
+}
+
+export function getChampionImg(id, list){
+    const champ = list.find(champ => champ.key == id);
+    if(champ){
+        return `${apiConfig.imgUrl}${champ.image.full}`;
+    }
 }

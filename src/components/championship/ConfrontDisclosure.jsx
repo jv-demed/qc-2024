@@ -39,10 +39,16 @@ const Styled = styled.li`
         border-radius: 0 0 5px 5px;
         display: ${props => props.$display};
         flex-direction: column;
+        gap: 5px;
         overflow: auto;
         padding: 10px;
         .date{
             font-size: 0.7rem;
+        }
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
     }
     @media(max-width: ${screens.mobile.px}){
@@ -50,7 +56,7 @@ const Styled = styled.li`
     }
 `
 
-export function ConfrontDisclosure({ matchList, playerList }){
+export function ConfrontDisclosure({ matchList, playerList, championList }){
     
     const [confront, setConfront] = useState();
     const [isOpen, setIsOpen] = useState(false);
@@ -92,6 +98,7 @@ export function ConfrontDisclosure({ matchList, playerList }){
                             <MatchBox key={match.id}
                                 match={match}
                                 playerList={playerList}
+                                championList={championList}
                             />
                         )
                     })}

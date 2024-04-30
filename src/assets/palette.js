@@ -5,14 +5,14 @@ export const palette = {
         imgBorder: 'linear-gradient(45deg, rgb(240, 16, 240), gold)'
     },
     confrontBoxes:{
-        border: 'white',
+        border: 'royalblue'
     },
     elements: {
         divisorBorder: 'white',
         loading: 'white'
     },
     main: {
-        bg: 'linear-gradient(240deg, rgba(5,35,45,1) 0%, rgba(0,10,15,1) 100%);#05232D',
+        bg: 'linear-gradient(200deg, rgba(8,58,74,1) 0%, rgba(0,21,32,1) 100%)',
         color: 'white'
     },
     ranking: {

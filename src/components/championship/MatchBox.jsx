@@ -1,30 +1,62 @@
 import styled from 'styled-components';
 import { screens } from '@/assets/screens';
 import { getPlayerName } from '@/scripts/playerScripts';
+import { getChampionImg, getChampionName } from '@/scripts/champions/championScripts';
 
 const Styled = styled.li`
     display: flex;
     flex-direction: column;
     .infos{
         display: flex;
+    }
+    .result{
+        display: flex;
         justify-content: space-between;
+        .player{
+            align-items: center;
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            .champ-img{
+                border-radius: 50%;
+                width: 30px;
+            }
+        }
+        .player2{
+            justify-content: flex-end;
+        }
     }
     @media(max-width: ${screens.mobile.px}){
         
     }
 `
 
-export function MatchBox({ match, playerList }){
+export function MatchBox({ match, playerList, championList }){
     return(
         <Styled>
             <div className='infos'>
-                <span>
-                    {getPlayerName(match.jogador1, playerList)}
-                </span> 
+
+            </div>
+            <div className='result'>
+                <div className='player'>
+                    {match.campeao1 && <img className='champ-img'
+                        alt={getChampionName(match.campeao1, championList)}
+                        src={getChampionImg(match.campeao1, championList)}
+                    />}
+                    <span>
+                        {getPlayerName(match.jogador1, playerList)}
+                    </span> 
+                </div>
                 <span>vs</span> 
-                <span>
-                    {getPlayerName(match.jogador2, playerList)}
-                </span> 
+                <div className='player player2'>
+                    <span>
+                        {getPlayerName(match.jogador2, playerList)}
+                    </span> 
+                    {match.campeao2 && <img className='champ-img'
+                        alt={getChampionName(match.campeao2, championList)}
+                        src={getChampionImg(match.campeao2, championList)}
+                    />}
+                </div> 
             </div>
         </Styled>
     );

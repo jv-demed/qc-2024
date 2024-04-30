@@ -17,7 +17,7 @@ const Styled = styled.section`
             cursor: pointer;
         }
     }
-    ul{
+    .confront-list{
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -28,10 +28,7 @@ const Styled = styled.section`
     }
 `
 
-export function Calendar({ infos, playerList, gameData, current, setRound }){
-
-    console.log(gameData);
-
+export function Calendar({ infos, playerList, championList, gameData, current, setRound }){
     return(
         <Styled>
             <header>
@@ -47,7 +44,7 @@ export function Calendar({ infos, playerList, gameData, current, setRound }){
                     }}
                 />
             </header>
-            <ul>
+            <ul className='confront-list'>
                 {gameData.map((round, i) => {
                     if(current == i+1){
                         return round.map((confront, i) => {
@@ -55,6 +52,7 @@ export function Calendar({ infos, playerList, gameData, current, setRound }){
                                 <ConfrontDisclosure key={`c-${i+1}`}
                                     matchList={confront}
                                     playerList={playerList}
+                                    championList={championList}
                                 />
                             )
                         })
