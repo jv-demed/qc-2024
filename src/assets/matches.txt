@@ -72,6 +72,83 @@ nunu x poppy
 win 2
 met 1
 
+yoqks x fael
+class mago
+bans1 brand, talyah, zyra
+bans2 ziggs, heimer, ahri
+aurelion x fiddlesticks
+win 2
+met 1
+
+fael x yoqks
+class tanque
+bans1 ksante, galio, ornn 
+bans2 jarvan, maokai, chogath
+amumu x rammus
+win 1
+met 1
+
+fael x yoqks
+class lutador
+bans1 mordekaiser, jax, aatrox
+bans2 hecarim, trynda, mundo
+riven x trundle
+win 1
+met 1
+
+
+jax x kerm
+class tank
+bans1 singed, nunu, blitz 
+bans2 jarvan, zac, cho
+ornn x ornn
+win 1
+met 1
+
+kerm x jax
+class sup
+bans1 yummi, pyke, tk
+bans2 milio, ivern, thresh
+renata x taric
+win 2
+met 1
+
+kerm x jax
+class lutador
+bans1 camile, illaoi, riven
+bans2 warwick, vi, rumble
+mordekaiser x panteon
+win 1
+met 1
+
+
+j x j
+class
+bans1 
+bans2 
+c x c
+win 
+met 
+
+j x j
+class
+bans1 
+bans2 
+c x c
+win 
+met 
+
+j x j
+class
+bans1 
+bans2 
+c x c
+win 
+met 
+
+
+
+
 j x j
 class
 bans1 
