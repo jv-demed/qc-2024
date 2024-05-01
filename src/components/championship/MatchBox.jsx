@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { screens } from '@/assets/screens';
-import { getPlayerName } from '@/scripts/playerScripts';
-import { getBanList, getChampionImg, getChampionName } from '@/scripts/champions/championScripts';
-import { images } from '@/assets/images';
-import { getClassNameById } from '@/scripts/classesScripts';
-import { formatDate } from '@/scripts/utils/dateScripts';
-import { palette } from '@/assets/palette';
-import { getNumericArrayByStr } from '@/scripts/utils/stringScripts';
 import { useState } from 'react';
+import { formatDate } from '@/scripts/utils/dateScripts';
+import { getPlayerName } from '@/scripts/playerScripts';
+import { getClassNameById } from '@/scripts/classesScripts';
+import { getNumericArrayByStr } from '@/scripts/utils/stringScripts';
+import { getChampionImg, getChampionName } from '@/scripts/champions/championScripts';
+import { images } from '@/assets/images';
+import { screens } from '@/assets/screens';
+import { palette } from '@/assets/palette';
 import { VideoBox } from '../elements/VideoBox';
 
 const Styled = styled.li`
@@ -97,7 +97,9 @@ export function MatchBox({ match, playerList, championList }){
     const [videoIsOpen, setIsVideoOpen] = useState(false);
 
     return(
-        <Styled onClick={() => setIsVideoOpen(!videoIsOpen)}>
+        <Styled onClick={() => {
+            match.video && setIsVideoOpen(!videoIsOpen)
+        }}>
             <div className='infos'>
                 <span>
                     {formatDate(match.data)}
@@ -158,7 +160,9 @@ export function MatchBox({ match, playerList, championList }){
                     />
                 </div> 
             </div>
-            {videoIsOpen && <VideoBox videoId={match.video} />}
+            {videoIsOpen && <VideoBox 
+                urlVideo={match.video} 
+            />}
         </Styled>
     );
 }
