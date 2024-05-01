@@ -13,7 +13,7 @@ const Styled = styled.section`
     gap: 15px;
     width: 100%;
     @media(max-width: ${screens.mobile.px}){
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 30px;
     }
 `
