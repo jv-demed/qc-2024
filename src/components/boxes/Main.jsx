@@ -10,9 +10,9 @@ export const Main = styled.main`
     flex-direction: column;
     gap: 10px;
     min-height: 100vh;
-    padding: 20px 100px;
+    padding: 50px 100px 0 100px;
     @media(max-width: ${screens.mobile.px}){
         height: auto;
-        padding: 10px 2%;
+        padding: 60px 2% 20px 2%;
     }
 `

@@ -1,0 +1,182 @@
+ASSASSINOS
+Nocturne - Pick ou Ban
+Kha'Zix - Pick
+Evelynn - Pick
+Akali - Ban
+Qiyana - Ban
+LeBlanc - Ban
+Naafiri - Ban
+Yone
+Zed
+Nidalee
+Talon
+Viego
+Shaco
+Master Yi
+Katarina
+Fizz
+Ekko
+Rengar
+Kassadin
+
+
+LUTADORES
+Tryndamere - Pick ou Ban
+Dr. Mundo - Pick
+Rumble - Pick
+Darius - Pick
+Aatrox - Pick
+Kled - Test
+Udyr - Ban
+Rek'Sai - Ban
+Bel’Veth
+Briar
+Camille
+Diana
+Gangplank
+Garen
+Gnar
+Gragas
+Gwen
+Hecarim
+Illaoi
+Irelia
+Jax
+Jayce
+Kayle
+Kayn
+Lee Sin
+Lillia
+Mordekaiser
+Nasus
+Nilah
+Olaf
+Pantheon
+Renekton
+Riven
+Sett
+Shyvana
+Skarner
+Trundle
+Urgot
+Vi
+Volibear
+Warwick
+Wukong
+Xin Zhao
+Yasuo
+Yorick
+
+
+MAGOS
+Vel'Koz - Pick
+Syndra - Pick
+Morgana - Pick
+Ahri - Pick
+Brand - Ban
+Heimerdinger - Ban
+Karthus - Ban
+Anivia
+Annie
+Aurelion Sol
+Azir
+Cassiopeia
+Elise
+Fiddlesticks
+Hwei
+Karma
+Kennen
+Lissandra
+Lux
+Malzahar
+Neeko
+Orianna
+Ryze
+Seraphine
+Swain
+Sylas
+Taliyah
+Twisted Fate
+Veigar
+Viktor
+Vex
+Vladimir
+Xerath
+Ziggs
+Zoe
+Zyra
+
+
+ATIRADORES
+Samira - Pick
+Jinx - Pick
+Graves - Pick ou Ban
+Kog'Maw - Pick
+Tristana - Pick
+Varus - Pick
+Quinn - Pick
+Smolder - Pick
+Twitch - Pick
+Caitlyn - Pick ou Ban
+Kalista - Ban
+Teemo - Ban
+Zeri - Ban
+Miss Fortune
+Ashe
+Draven
+Kai'sa
+Xayah
+Vayne
+Senna
+Aphelios
+Ezreal
+Corki
+Lucian
+Jhin
+Kindred
+Akshan
+Sivir
+
+
+SUPORTES
+Bardo - Pick ou Ban
+Pyke - Pick ou Ban
+Thresh - Pick
+Tahm Kench - Ban
+Yuumi - Ban
+Sona - Ban
+Braum
+Ivern
+Janna
+Lulu
+Milio
+Nami
+Rakan
+Renata Glasc
+Soraka
+Taric
+Zilean
+
+
+TANQUES
+Cho'Gath - Pick ou Ban
+Jarvan IV - Pick ou Ban
+Ornn - Pick ou Ban
+Malphite - Pick
+Alistar - Pick
+Shen - Pick
+Singed - Pick
+K’Sante - Ban
+Zac - Ban
+Nunu - Ban
+Amumu
+Blitzcrank
+Galio
+Leona
+Maokai
+Nautilus
+Poppy
+Rammus
+Rell
+Sejuani
+Sion
