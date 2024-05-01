@@ -91,7 +91,7 @@ export async function getClassification(current, gameData, playerList){
                                 match.metodo == 2 && stats.farm++
                                 match.metodo == 3 && stats.towerd++
                                 !match.joker && stats.wins++;
-                                match.time += match.tempo
+                                stats.time += match.tempo
                             }
                         }else if(match.jogador2 == p.id){
                             match.resultado && stats.matches++;
