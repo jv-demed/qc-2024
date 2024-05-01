@@ -5,8 +5,5 @@ export const menuItems = [
     },{
         name: 'Campeões',
         url: '/campeoes'
-    },{
-        name: 'Outras Edições',
-        url: '#'
     }
 ]

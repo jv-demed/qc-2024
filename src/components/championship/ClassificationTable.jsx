@@ -6,6 +6,7 @@ import { screens } from '@/assets/screens';
 import { palette } from '@/assets/palette';
 import { Loading } from '../elements/Loading';
 import { PlayerClassificationBox } from './PlayerClassificationBox';
+import { useMedia } from '@/hooks/useMedia';
 
 const Styled = styled.section`
     display: flex;
@@ -25,7 +26,7 @@ const Styled = styled.section`
             padding: 0 5px;
             margin-bottom: 5px;
             width: 100%;
-            div{
+            span{
                 display: flex;
                 justify-content: center;
                 width: 40px;
@@ -51,6 +52,8 @@ const Styled = styled.section`
 
 export function ClassificationTable({ infos, gameData, playerList, current }){
 
+    const isMobile = useMedia(screens.mobile.num);
+
     const [classification, setClassification] = useState(playerList);
     const [isLoading, setIsLoading] = useState(true);
     
@@ -72,10 +75,11 @@ export function ClassificationTable({ infos, gameData, playerList, current }){
                 </header>
                 <section className='table'>
                     <header>
-                        <div>P</div>
-                        <div>V</div>
-                        <div>JK</div>
-                        <div>J</div>
+                        <span>V</span>
+                        {!isMobile && <span>D</span>}
+                        <span>JK</span>
+                        <span>J</span>
+                        <span>P</span>
                     </header>
                     <ul>
                         {classification.map((player, i) => {
@@ -88,6 +92,7 @@ export function ClassificationTable({ infos, gameData, playerList, current }){
                                         direct: infos.classificacaoDireta,
                                         total: infos.classificacao
                                     }}
+                                    isMobile={isMobile}
                                 />
                             )
                         })}

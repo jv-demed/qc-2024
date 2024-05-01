@@ -53,6 +53,7 @@ export async function getClassification(current, gameData, playerList){
             farm: 0,
             jokers: 0,
             kills: 0,
+            loses: 0,
             matches: 0,
             nick: p.nick,
             points: 0,
@@ -85,22 +86,26 @@ export async function getClassification(current, gameData, playerList){
                     }
                     c.forEach(match => {
                         if(match.jogador1 == p.id){
-                            match.resultado && stats.matches++;
+                            !match.joker && match.resultado && stats.matches++;
                             if(match.resultado == 1){
                                 match.metodo == 1 && stats.kills++
                                 match.metodo == 2 && stats.farm++
-                                match.metodo == 3 && stats.towerd++
+                                match.metodo == 3 && stats.towers++
                                 !match.joker && stats.wins++;
                                 stats.time += match.tempo
+                            }else{
+                                !match.joker && stats.loses++;
                             }
                         }else if(match.jogador2 == p.id){
-                            match.resultado && stats.matches++;
+                            !match.joker && match.resultado && stats.matches++;
                             if(match.resultado == 2){
                                 match.metodo == 1 && stats.kills++
                                 match.metodo == 2 && stats.farm++
-                                match.metodo == 3 && stats.towerd++
+                                match.metodo == 3 && stats.towers++
                                 !match.joker && stats.wins++;
                                 stats.time += match.tempo
+                            }else{
+                                !match.joker && stats.loses++;
                             }
                         }
                     });

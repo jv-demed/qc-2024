@@ -48,7 +48,7 @@ const Styled = styled.li`
     }
 `
 
-export function PlayerClassificationBox({ position, player, numClass }){
+export function PlayerClassificationBox({ position, player, numClass, isMobile }){
     return(
         <Styled
             $color={() => {
@@ -66,10 +66,11 @@ export function PlayerClassificationBox({ position, player, numClass }){
                 <span className='nick'>{player.nick}</span>
             </div>
             <div className='stats'>
-                <span className='fix'>{player.points}</span>
                 <span className='fix'>{player.wins}</span>
+                {!isMobile && <span className='fix'>{player.loses}</span>}
                 <span className='fix'>{player.jokers}</span>
                 <span className='fix'>{player.matches}</span>
+                <span className='fix'>{player.points}</span>
             </div>
         </Styled>
     );
