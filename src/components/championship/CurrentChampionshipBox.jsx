@@ -41,7 +41,8 @@ export function CurrentChampionshipBox(){
 
     useEffect(() => {
         championship && getGameData(championship.id).then(res => {
-            setGameData(res);
+            const data = res.filter(round => round.length != 0);
+            setGameData(data);
         });
     }, [championship]);
 

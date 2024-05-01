@@ -93,9 +93,11 @@ export function HeaderMenu(){
                 {!isMobile && <ul>
                     {menuItems.map(item => {
                         return(
-                            <li onClick={() => {
-                                router.push(item.url);
-                            }}>
+                            <li key={item.name}
+                                onClick={() => {
+                                    router.push(item.url);
+                                }
+                            }>
                                 {item.name}
                             </li>
                         )
