@@ -7,11 +7,13 @@ import { getClassNameById } from '@/scripts/classesScripts';
 import { formatDate } from '@/scripts/utils/dateScripts';
 import { palette } from '@/assets/palette';
 import { getNumericArrayByStr } from '@/scripts/utils/stringScripts';
+import { useState } from 'react';
+import { VideoBox } from '../elements/VideoBox';
 
 const Styled = styled.li`
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
     .infos{
         display: flex;
         font-size: 0.6rem;
@@ -55,16 +57,25 @@ const Styled = styled.li`
             }
         }
         .player1{
-            background-color: rgba(0,0,55,0.5);
+            background-color: ${palette.matches.blueSide};
             border-radius: 20px 5px 5px 20px;
             width: 100%;
+            .champ-img{
+                border: 2px solid ${palette.matches.champ1};
+            }
         }
         .player2{
-            background-color: rgba(99,0,0,0.3);
+            background-color: ${palette.matches.redSide};
             border-radius: 5px 20px 20px 5px;
             justify-content: flex-end;
             text-align: end;
             width: 100%;
+            .champ-img{
+                border: 2px solid ${palette.matches.champ2};
+            }
+            .ban-list{
+                justify-content: flex-end;
+            }
         }
     }
     @media(max-width: ${screens.mobile.px}){
@@ -82,9 +93,11 @@ const Styled = styled.li`
 `
 
 export function MatchBox({ match, playerList, championList }){
-    console.log(championList)
+
+    const [videoIsOpen, setIsVideoOpen] = useState(false);
+
     return(
-        <Styled>
+        <Styled onClick={() => setIsVideoOpen(!videoIsOpen)}>
             <div className='infos'>
                 <span>
                     {formatDate(match.data)}
@@ -145,6 +158,7 @@ export function MatchBox({ match, playerList, championList }){
                     />
                 </div> 
             </div>
+            {videoIsOpen && <VideoBox videoId={match.video} />}
         </Styled>
     );
 }

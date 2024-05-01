@@ -16,6 +16,10 @@ export const palette = {
         color: 'white'
     },
     matches: {
+        blueSide: 'rgba(0,0,55,0.5)',
+        champ1: 'blueviolet',
+        champ2: 'tomato',
+        redSide: 'rgba(99,0,0,0.3)',
         winner: 'lawngreen'
     },
     ranking: {
