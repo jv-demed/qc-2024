@@ -72,6 +72,7 @@ export function CurrentChampionshipBox(){
                     current={current}
                 />
                 <Calendar
+                    infos={championship}
                     gameData={gameData}
                     playerList={playerList}
                     championList={championList}

@@ -3,6 +3,7 @@ import { screens } from '@/assets/screens';
 import { icons } from '@/assets/icons';
 import { palette } from '@/assets/palette';
 import { ConfrontDisclosure } from './ConfrontDisclosure';
+import { useRouter } from 'next/navigation';
 
 const Styled = styled.section`
     width: 100%;
@@ -34,7 +35,10 @@ const Styled = styled.section`
     }
 `
 
-export function Calendar({ playerList, championList, gameData, current, setRound }){
+export function Calendar({ infos, playerList, championList, gameData, current, setRound }){
+
+    const router = useRouter();
+
     return(
         <Styled>
             <header>
@@ -43,7 +47,9 @@ export function Calendar({ playerList, championList, gameData, current, setRound
                         current > 1 && setRound(-1);
                     }}
                 />
-                <span>Rodada {current}</span>
+                <span onClick={() => router.push(`/registros/${infos.id}`)}>
+                    Rodada {current}
+                </span>
                 <icons.arrowRight className='arrow-icon'
                     onClick={() => {
                         current < gameData.length && setRound(1);

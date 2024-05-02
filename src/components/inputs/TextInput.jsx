@@ -14,12 +14,13 @@ const Styled = styled.input`
     }
 `
 
-export function TextInput({ text, setText }){
+export function TextInput({ type, text, setText, placeholder }){
     return(
         <Styled 
+            type={type ? type : 'text'}
             value={text}
             onChange={setText}
-            placeholder='Buscar...'
+            placeholder={placeholder ? placeholder : '...'}
         />
     );
 }
