@@ -15,6 +15,12 @@ export const palette = {
         divisorBorder: 'white',
         loading: 'white'
     },
+    inputs: {
+        bg: 'rgba(0,0,0,0)',
+        border: 'white',
+        color: 'white',
+        outline: 'royalblue'
+    },
     main: {
         bg: 'linear-gradient(200deg, rgba(8,58,74,1) 0%, rgba(0,21,32,1) 100%)',
         color: 'white'

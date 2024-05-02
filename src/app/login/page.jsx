@@ -24,7 +24,9 @@ export default function Login(){
     return(
         <Main>
             <HeaderMenu />
-            <TransparentBox>
+            <TransparentBox
+                width='300px'
+            >
                 <Form>
                     <TextInput 
                         type='email'

@@ -7,12 +7,14 @@ const Styled = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin: auto;
     padding: 20px;
+    width: ${props => props.$width};
 `
 
-export function TransparentBox({ children }){
+export function TransparentBox({ children, width }){
     return(
-        <Styled>
+        <Styled $width={width || 'auto'}>
             {children}
         </Styled>
     )
