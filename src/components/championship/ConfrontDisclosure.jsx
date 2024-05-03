@@ -1,13 +1,12 @@
 import styled from 'styled-components';
-import { screens } from '@/assets/screens';
+import { useEffect, useState } from 'react';
+import { getPlayerName } from '@/scripts/playerScripts';
+import { getConfrontById } from '@/scripts/matchScripts';
 import { icons } from '@/assets/icons';
 import { palette } from '@/assets/palette';
-import { getConfrontById } from '@/scripts/matchScripts';
-import { formatDate } from '@/scripts/utils/dateScripts';
-import { useEffect, useState } from 'react';
-import { Loading } from '../elements/Loading';
-import { getPlayerName } from '@/scripts/playerScripts';
+import { screens } from '@/assets/screens';
 import { MatchBox } from './MatchBox';
+import { Loading } from '../elements/Loading';
 
 const Styled = styled.li`
     cursor: pointer;

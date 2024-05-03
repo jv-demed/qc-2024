@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { getClassification, isPlayoffs } from '@/scripts/championships/championshipScripts';
+import { useMedia } from '@/hooks/useMedia';
+import { getClassification } from '@/scripts/championships/championshipScripts';
 import { sortPlayersPontuation } from '@/scripts/championships/championshipOrdinationScripts';
 import { screens } from '@/assets/screens';
 import { palette } from '@/assets/palette';
 import { Loading } from '../elements/Loading';
 import { PlayerClassificationBox } from './PlayerClassificationBox';
-import { useMedia } from '@/hooks/useMedia';
 
 const Styled = styled.section`
     display: flex;
@@ -63,7 +63,7 @@ export function ClassificationTable({ infos, gameData, playerList, current }){
             setClassification(sortPlayersPontuation(res));
             setIsLoading(false);
         });
-    }, [playerList]);
+    }, [playerList, current]);
 
     return(
         <Styled>

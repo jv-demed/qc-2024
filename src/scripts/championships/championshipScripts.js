@@ -1,11 +1,23 @@
 import { supabase } from '@/services/supabaseService';
 import { getMatchesByConfront } from '../matchScripts';
+import { getConfrontsByRound } from './confrontScripts';
 
 export async function getCurrentChampionship(){
     const { data, status, error } = await supabase
         .from('qc-campeonatos').select('*')
         .order('id', { ascending: false })
         .limit(1);
+    if(status !== 200){
+        console.log(error);
+    }
+    return data[0];
+}
+
+export async function getChampionshipById(id){
+    const { data, status, error } = await supabase
+        .from('qc-campeonatos')
+        .select('*')
+        .eq('id', id)
     if(status !== 200){
         console.log(error);
     }
@@ -23,21 +35,10 @@ export async function getRounds(idChampionship){
     return data;
 }
 
-export async function getConfronts(idRound){
-    const { data, status, error } = await supabase
-        .from('qc-confrontos').select('*')
-        .eq('idRodada', idRound)
-        .order('id')
-    if(status !== 200){
-        console.log(error);
-    }
-    return data;
-}
-
 export async function getGameData(idChampionship){
     const rounds = await getRounds(idChampionship);
     const gameData = await Promise.all(rounds.map(async round => {
-        const confronts = await getConfronts(round.id);
+        const confronts = await getConfrontsByRound(round.id);
         const roundMatches = await Promise.all(confronts.map(async confront => {
             return await getMatchesByConfront(confront.id);
         }));
@@ -62,7 +63,8 @@ export async function getClassification(current, gameData, playerList){
             time: 0
         }
         gameData.forEach((r, i) => {
-            current <= (i+1) && r.forEach(c => {
+            if(i + 1 > current) return;
+            r.forEach(c => {
                 if(c[0] && c[1] && c[2]){
                     if(c[0].jogador1 == p.id && c[1].jogador2 == p.id){
                         if(c[0].resultado == 1 && c[1].resultado == 2){
@@ -112,7 +114,6 @@ export async function getClassification(current, gameData, playerList){
                 }
             });
         });
-        console.log(stats)
         return stats;
     });
 }

@@ -22,13 +22,17 @@ const Styled = styled.button`
         display: flex;
         gap: 10px;
     }
+    ${props => props.disabled && `
+        background-color: ${palette.actionButton.disabled};
+        cursor: not-allowed;
+    `}
     @media(max-width: ${screens.mobile.px}){
         height: 45px;
         width: 100%;
     }
 `
 
-export function ActionButton({ name, type, icon, width, action, setFlag }){
+export function ActionButton({ name, type, icon, width, action, setFlag, setMode, disabled }){
     
     const [isLoading, setIsLoading] = useState(false);
 
@@ -40,8 +44,10 @@ export function ActionButton({ name, type, icon, width, action, setFlag }){
                 setIsLoading(true);
                 action && await action();
                 setFlag && setFlag();
+                setMode && setMode();
                 setIsLoading(false);
             }}
+            disabled={disabled}
         >
             {!isLoading && <div className='txt'>
                 <span>{name}</span>

@@ -1,7 +1,8 @@
 export const palette = {
     actionButton: {
         bg: 'royalblue',
-        color: 'white'
+        color: 'white',
+        disabled: 'gray'
     },
     champBoxes: {
         border: 'white',
@@ -19,6 +20,7 @@ export const palette = {
         bg: 'rgba(0,0,0,0)',
         border: 'white',
         color: 'white',
+        option: 'black',
         outline: 'royalblue'
     },
     main: {
@@ -36,6 +38,10 @@ export const palette = {
         classified: 'royalblue',
         direct: 'lawngreen',
         eliminated: 'tomato'
+    },
+    register: {
+        element: 'rgba(0,0,0,0.3)',
+        elementHover: 'rgba(0,0,0,0.5)'
     },
     transparentBox: {
         bg: 'rgba(0,0,0,0.5)'
