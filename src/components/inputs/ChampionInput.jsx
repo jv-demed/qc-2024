@@ -1,7 +1,9 @@
+import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import { getClassIdByName } from '@/scripts/classesScripts';
+import { sortAlpha } from '@/scripts/utils/ordinationScripts';
 import { palette } from '@/assets/palette';
 import { screens } from '@/assets/screens';
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 
 const Styled = styled.label`
     display: flex;
@@ -32,17 +34,28 @@ const Styled = styled.label`
     }
 `;
 
-export function SelectInput({ name, array, info, value, setValue }){
+export function ChampionInput({ championList, value, setValue, classMatch, secondary }){
+
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+        setList(championList.filter(champ => getClassIdByName(champ.tags[0]) == classMatch));
+        if(secondary){
+            const otherChamps = championList.filter(champ => getClassIdByName(champ.tags[1]) == classMatch);
+            setList(prev => [...prev, ...otherChamps]);
+        }
+    }, []);
+
     return(
         <Styled>
-            <select name={name}
+            <select name='championList'
                 value={value}
                 onChange={setValue} 
             >
-                {array.map(item => {
+                {sortAlpha(list, 'name').map(champ => {
                     return(
-                        <option key={item.id} value={item.id}>
-                            {item[info]}
+                        <option key={champ.key} value={champ.key}>
+                            {champ.name}
                         </option>
                     )
                 })}

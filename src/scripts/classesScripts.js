@@ -16,6 +16,24 @@ export function convertClass(className){
     }
 }
 
+export function getClassIdByName(className){
+    switch(className){
+        case 'Assassin': {
+            return 1;
+        }case 'Marksman': {
+            return 2;
+        }case 'Fighter': {
+            return 3;
+        }case 'Mage': {
+            return 4;
+        }case 'Support': {
+            return 5
+        }case 'Tank': {
+            return 6;
+        }
+    }
+}
+
 export function getClassNameById(id){
     switch(id){
         case 1: {
@@ -32,4 +50,32 @@ export function getClassNameById(id){
             return 'Tanque';
         }
     }
+}
+
+export function getClassesObjs(){
+    return [
+        {
+            id: 1,
+            name: 'Assassino'
+        },{
+            id: 2,
+            name: 'Atirador'
+        },{
+            id: 3,
+            name: 'Lutador'
+        },{
+            id: 4,
+            name: 'Mago'
+        },{
+            id: 5,
+            name: 'Suporte'
+        },{
+            id: 6,
+            name: 'Tanque'
+        },
+    ]
+}
+
+export function getRandomIdClass(){
+    return Math.floor(Math.random() * 6) + 1;
 }

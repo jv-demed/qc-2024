@@ -6,8 +6,9 @@ Akali - Ban
 Qiyana - Ban
 LeBlanc - Ban
 Naafiri - Ban
+Zed - Ban
+Rengar - Ban
 Yone
-Zed
 Nidalee
 Talon
 Viego
@@ -16,43 +17,44 @@ Master Yi
 Katarina
 Fizz
 Ekko
-Rengar
 Kassadin
 
 
 LUTADORES
 Tryndamere - Pick ou Ban
-Dr. Mundo - Pick
 Rumble - Pick
-Darius - Pick
 Aatrox - Pick
-Kled - Test
+Warwick - Pick
+Renekton - Pick
+Mordekaiser - Pick
+Darius - Pick
+Kled - Pick
+Camille - Pick
+Yorick - Pick ou Ban
+Dr. Mundo - Pick
 Udyr - Ban
 Rek'Sai - Ban
+Lee Sin - Ban
+Gragas - Ban
+Illaoi - Ban
 Bel’Veth
 Briar
-Camille
 Diana
 Gangplank
 Garen
 Gnar
-Gragas
 Gwen
 Hecarim
-Illaoi
 Irelia
 Jax
 Jayce
 Kayle
 Kayn
-Lee Sin
 Lillia
-Mordekaiser
 Nasus
 Nilah
 Olaf
 Pantheon
-Renekton
 Riven
 Sett
 Shyvana
@@ -61,11 +63,9 @@ Trundle
 Urgot
 Vi
 Volibear
-Warwick
 Wukong
 Xin Zhao
 Yasuo
-Yorick
 
 
 MAGOS

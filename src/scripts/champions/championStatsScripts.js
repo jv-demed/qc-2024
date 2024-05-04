@@ -1,4 +1,4 @@
-import { getMatches } from '../matchScripts';
+import { getMatches } from '../championships/matchScripts';
 import { getInfoChampions } from './championScripts';
 
 export async function getChampionsStats(){

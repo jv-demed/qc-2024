@@ -88,7 +88,6 @@ export function ChampionshipEdit({ idChampionship }){
             setIsLoading(false);
         }
     }, [championship, playerList, championList, roundList]);
-    console.log(championList)
 
     return(
         <Styled>

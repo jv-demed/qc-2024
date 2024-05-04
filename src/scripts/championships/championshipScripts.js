@@ -1,6 +1,7 @@
 import { supabase } from '@/services/supabaseService';
-import { getMatchesByConfront } from '../matchScripts';
+import { getMatchesByConfront } from './matchScripts';
 import { getConfrontsByRound } from './confrontScripts';
+import { getRecordById } from '../database/tableScripts';
 
 export async function getCurrentChampionship(){
     const { data, status, error } = await supabase
@@ -22,6 +23,17 @@ export async function getChampionshipById(id){
         console.log(error);
     }
     return data[0];
+}
+
+export async function getChampionshipIdByConfrontId(idRound){
+    const round = await getRecordById(idRound, 'qc-rodadas', 'idCampeonato');
+    return round.idCampeonato;
+}
+
+export async function getChampionshipByMatchId(idConfront){
+    const confront = await getRecordById(idConfront, 'qc-confrontos', 'idRodada');
+    const round = await getRecordById(confront.idRodada, 'qc-rodadas', 'idCampeonato');
+    return await getRecordById(round.idCampeonato, 'qc-campeonatos', '*');
 }
 
 export async function getRounds(idChampionship){
@@ -95,7 +107,7 @@ export async function getClassification(current, gameData, playerList){
                                 match.metodo == 3 && stats.towers++
                                 !match.joker && stats.wins++;
                                 stats.time += match.tempo
-                            }else{
+                            }else if(match.resultado == 2){
                                 !match.joker && stats.loses++;
                             }
                         }else if(match.jogador2 == p.id){
@@ -106,7 +118,7 @@ export async function getClassification(current, gameData, playerList){
                                 match.metodo == 3 && stats.towers++
                                 !match.joker && stats.wins++;
                                 stats.time += match.tempo
-                            }else{
+                            }else if(match.resultado == 1){
                                 !match.joker && stats.loses++;
                             }
                         }

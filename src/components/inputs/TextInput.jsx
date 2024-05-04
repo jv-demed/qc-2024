@@ -4,11 +4,11 @@ import { screens } from '@/assets/screens';
 
 const Styled = styled.label`
     display: flex;
-    width: 100%;
+    width: ${props => props.$width};
     input{
         background-color: ${palette.inputs.bg};
         border: 1px solid ${palette.inputs.border};
-        border-radius: 5px;
+        border-radius: 2px;
         color: ${palette.inputs.color};
         font-size: 1.2rem;
         height: 30px;
@@ -27,9 +27,9 @@ const Styled = styled.label`
     }
 `
 
-export function TextInput({ type, text, setText, placeholder }){
+export function TextInput({ type, text, setText, width, placeholder }){
     return(
-        <Styled>
+        <Styled $width={width || '100%'}>
             <input
                 type={type ? type : 'text'}
                 value={text}

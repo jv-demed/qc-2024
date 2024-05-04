@@ -1,13 +1,11 @@
+import styled from 'styled-components';
 import { palette } from '@/assets/palette';
 import { screens } from '@/assets/screens';
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 
 const Styled = styled.label`
     display: flex;
-    flex-direction: column;
     width: 100%;
-    select{
+    input{
         background-color: ${palette.inputs.bg};
         border: 1px solid ${palette.inputs.border};
         border-radius: 2px;
@@ -17,36 +15,30 @@ const Styled = styled.label`
         outline: none;
         padding: 0 8px;
         width: 100%;
-        option{
-            color: ${palette.inputs.option};
-        }
     }
     input:focus{
         border: none;
         outline: 2px solid ${palette.inputs.outline};
+    }
+    ::-webkit-calendar-picker-indicator{
+        cursor: pointer;
+        filter: invert(1);
     }
     @media(max-width: ${screens.mobile.px}){
         input{
             height: 50px;
         }
     }
-`;
+`
 
-export function SelectInput({ name, array, info, value, setValue }){
+export function DateInput({ value, setValue }){
     return(
         <Styled>
-            <select name={name}
+            <input
+                type='date'
                 value={value}
-                onChange={setValue} 
-            >
-                {array.map(item => {
-                    return(
-                        <option key={item.id} value={item.id}>
-                            {item[info]}
-                        </option>
-                    )
-                })}
-            </select>
+                onChange={setValue}
+            />
         </Styled>
-    )
+    );
 }

@@ -29,3 +29,10 @@ export function getChampionImg(id, list){
         return `${apiConfig.imgUrl}${champ.image.full}`;
     }
 }
+
+export function getChampionLoadingScreenImg(id, list){
+    const champ = list.find(champ => champ.key == id);
+    if(champ){
+        return `${apiConfig.imgLoadingScreenUrl}${champ.id}_0.jpg`;
+    }
+}

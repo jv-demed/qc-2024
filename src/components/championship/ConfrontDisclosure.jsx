@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { getPlayerName } from '@/scripts/playerScripts';
-import { getConfrontById } from '@/scripts/matchScripts';
 import { icons } from '@/assets/icons';
 import { palette } from '@/assets/palette';
 import { screens } from '@/assets/screens';
 import { MatchBox } from './MatchBox';
 import { Loading } from '../elements/Loading';
+import { getConfrontById } from '@/scripts/championships/confrontScripts';
 
 const Styled = styled.li`
     cursor: pointer;

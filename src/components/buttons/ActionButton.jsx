@@ -8,7 +8,7 @@ const Styled = styled.button`
     align-items: center;
     background-color: ${palette.actionButton.bg};
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
     display: flex;
     font-size: 1rem;

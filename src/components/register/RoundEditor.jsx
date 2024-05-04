@@ -9,6 +9,7 @@ import { objsData } from '@/assets/objsData';
 import { Loading } from '../elements/Loading';
 import { SelectInput } from '../inputs/SelectInput';
 import { ActionButton } from '../buttons/ActionButton';
+import { useRouter } from 'next/navigation';
 
 const Styled = styled.section`
     width: 100%;
@@ -44,6 +45,7 @@ const Styled = styled.section`
             align-items: center;
             background-color: ${palette.register.element};
             border-radius: 2px;
+            cursor: pointer;
             display: flex;
             height: 30px;
             justify-content: space-between;
@@ -65,6 +67,8 @@ const Styled = styled.section`
 `
 
 export function RoundEditor({ round, playerList }){
+
+    const router = useRouter();
 
     const [confronts, setConfronts] = useState();
     const [newMode, setNewMode] = useState(false);
@@ -149,7 +153,9 @@ export function RoundEditor({ round, playerList }){
                 <ul>
                     {confronts.map(confront => {
                         return(
-                            <li key={confront.id}>
+                            <li key={confront.id}
+                                onClick={() => router.push(`/registros/confronto/${confront.id}`)}
+                            >
                                 <span className='nick'>
                                     {getPlayerName(confront.jogador1, playerList)}
                                 </span> 

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMedia } from '@/hooks/useMedia';
 import { icons } from '@/assets/icons';
 import { screens } from '@/assets/screens';
 import { menuItems } from '@/assets/menuItems';
-import { useState } from 'react';
 
 const Styled = styled.header`
     align-items: center;
