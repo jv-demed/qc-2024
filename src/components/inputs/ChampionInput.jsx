@@ -34,25 +34,17 @@ const Styled = styled.label`
     }
 `;
 
-export function ChampionInput({ championList, value, setValue, classMatch, secondary }){
-
-    const [list, setList] = useState([]);
-
-    useEffect(() => {
-        setList(championList.filter(champ => getClassIdByName(champ.tags[0]) == classMatch));
-        if(secondary){
-            const otherChamps = championList.filter(champ => getClassIdByName(champ.tags[1]) == classMatch);
-            setList(prev => [...prev, ...otherChamps]);
-        }
-    }, []);
-
+export function ChampionInput({ championList, value, setValue }){
     return(
         <Styled>
             <select name='championList'
-                value={value}
+                value={value || ''}
                 onChange={setValue} 
             >
-                {sortAlpha(list, 'name').map(champ => {
+                {value == null && ( 
+                    <option value=''>Selecione...</option>
+                )}
+                {sortAlpha(championList, 'name').map(champ => {
                     return(
                         <option key={champ.key} value={champ.key}>
                             {champ.name}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getClassesObjs } from '@/scripts/classesScripts';
+import { getClassIdByName, getClassesObjs } from '@/scripts/classesScripts';
 import { getNumericArrayByStr } from '@/scripts/utils/stringScripts';
 import { getPlayerList, getPlayerName } from '@/scripts/playerScripts';
 import { getMatchById, updateMatch } from '@/scripts/championships/matchScripts';
@@ -13,6 +13,7 @@ import { Loading } from '../elements/Loading';
 import { DateInput } from '../inputs/DateInput';
 import { SelectInput } from '../inputs/SelectInput';
 import { ChampionInput } from '../inputs/ChampionInput';
+import { SideEditor } from './SideEditor';
 
 const Styled = styled.section`
     display: flex;
@@ -22,6 +23,7 @@ const Styled = styled.section`
     .match-actions{
         display: flex;
         justify-content: space-between;
+        z-index: 2;
         span{
             cursor: pointer;
         }
@@ -37,11 +39,13 @@ const Styled = styled.section`
         .infos{
             display: flex;
             gap: 20px;
+            z-index: 2;
         }
         .players{
             align-items: center;
             display: flex;
             gap: 20px;
+            z-index: 2;
             .player1, .player2{
                 width: 100%;
             }
@@ -55,31 +59,9 @@ const Styled = styled.section`
                 height: 50%;
             }
         }
-        .champions{
+        .sides{
             display: flex;
-            gap: 10px;
-            justify-content: space-between;
-            .sides{
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                width: 25%;
-                .champion-img{
-                    border-radius: 5px;
-                    width: 100%;
-                }
-            }
-            .bans-box{
-                display: flex;
-                gap: 5px;
-                padding-top: 40px;
-                .bans{
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
-                    text-align: center;
-                }
-            }
+            gap: 8px;
         }
     }
     @media(max-width: ${screens.mobile.px}){
@@ -108,12 +90,6 @@ export function MatchEditor({ idMatch }){
     }, []);
 
     useEffect(() => {
-        getChampions().then(res => {
-            setChampionList(res);
-        });
-    }, []);
-
-    useEffect(() => {
         match && getPlayerList(`${match.jogador1},${match.jogador2}`).then(res => {
             setPlayerList(res);
         });
@@ -124,6 +100,23 @@ export function MatchEditor({ idMatch }){
             setInfos(res);
         });
     }, [match]);
+
+    useEffect(() => {
+        match && getChampions().then(res => {
+            const filtered = res.filter(c => getClassIdByName(c.tags[0]) == match.classe);
+            setChampionList(filtered);
+        });
+    }, [match]);
+
+    useEffect(() => {
+        if(championList){
+            const filtered = championList.filter(c => !bans1.includes(c.key) && !bans2.includes(c.key));
+            setChampionList(filtered);
+        }
+    }, [bans1, bans2]);
+    //ARRUMAR AQUI, NÃO TÁ SENDO FILTRADO OS CAMPEOES JÁ ESCOLHIDOS
+
+    console.log(bans1);
 
     useEffect(() => {
         if(match && infos && bans1.length == 0 && bans2.length == 0){
@@ -194,83 +187,43 @@ export function MatchEditor({ idMatch }){
                             </span>
                         </div>
                     </div>
-                    <div className='champions'>
-                        <div className='sides'>
-                            <ChampionInput
-                                championList={championList}
-                                value={match.campeao1}
-                                classMatch={match.classe}
-                                secondary={infos.classeSecundaria}
-                                setValue={e => {
-                                    setMatch({...match, campeao1: e.target.value});
-                                    setFlag(prev => prev+1);
-                                }}
-                            />
-                            <img className='champion-img'
-                                alt={getChampionName(match.campeao1, championList)}
-                                src={getChampionLoadingScreenImg(match.campeao1, championList)}
-                            />
-                        </div>
-                        <div className='bans-box'>
-                            <div className='bans'>
-                                <span>Bans: </span>
-                                {bans1.map((ban1, i) => {
-                                    return(
-                                        <ChampionInput 
-                                            key={ban1}
-                                            championList={championList}
-                                            value={ban1}
-                                            classMatch={match.classe}
-                                            secondary={infos.classeSecundaria}
-                                            setValue={e => {
-                                                const updatedBans = [...bans1];
-                                                updatedBans[i] = parseInt(e.target.value);
-                                                setBans1(updatedBans);
-                                                setMatch({...match, bans1: updatedBans.join(',')});
-                                                setFlag(prev => prev+1);
-                                            }}
-                                        />
-                                    )
-                                })}
-                            </div>
-                            <div className='bans'>
-                                <span>Bans: </span>
-                                {bans2.map((ban2, i) => {
-                                    return(
-                                        <ChampionInput 
-                                            key={ban2}
-                                            championList={championList}
-                                            value={ban2}
-                                            classMatch={match.classe}
-                                            secondary={infos.classeSecundaria}
-                                            setValue={e => {
-                                                const updatedBans = [...bans2];
-                                                updatedBans[i] = parseInt(e.target.value);
-                                                setBans2(updatedBans);
-                                                setMatch({...match, bans2: updatedBans.join(',')});
-                                                setFlag(prev => prev+1);
-                                            }}
-                                        />
-                                    )
-                                })}
-                            </div>
-                        </div>
-                        <div className='sides'>
-                            <ChampionInput
-                                championList={championList}
-                                value={match.campeao2}
-                                classMatch={match.classe}
-                                secondary={infos.classeSecundaria}
-                                setValue={e => {
-                                    setMatch({...match, campeao2: e.target.value});
-                                    setFlag(prev => prev+1);
-                                }}
-                            />
-                            <img className='champion-img'
-                                alt={getChampionName(match.campeao2, championList)}
-                                src={getChampionLoadingScreenImg(match.campeao2, championList)}
-                            />
-                        </div>
+                    <div className='sides'>
+                        <SideEditor 
+                            match={match}
+                            list={championList}
+                            setList={setChampionList}
+                            champ={match.campeao1}
+                            setChamp={e => {
+                                setMatch({...match, campeao1: e.target.value});
+                                setFlag(prev => prev+1);
+                            }}
+                            bans={bans1}
+                            bansInfo='bans1'
+                            setBans={(info, list) => {
+                                setBans1(list);
+                                setMatch({...match, [info]: list.join(',')});
+                                setFlag(prev => prev+1);
+                            }}
+                            mirror={false}
+                        />
+                        <SideEditor 
+                            match={match}
+                            list={championList}
+                            setList={setChampionList}
+                            champ={match.campeao2}
+                            setChamp={e => {
+                                setMatch({...match, campeao2: e.target.value});
+                                setFlag(prev => prev+1);
+                            }}
+                            bans={bans2}
+                            bansInfo='bans2'
+                            setBans={(info, list) => {
+                                setBans1(list);
+                                setMatch({...match, [info]: list.join(',')});
+                                setFlag(prev => prev+1);
+                            }}
+                            mirror={true}
+                        />
                     </div>
                 </section>
             </>}
