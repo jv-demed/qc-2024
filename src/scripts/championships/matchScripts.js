@@ -63,3 +63,23 @@ async function addMatch(idConfront, players, options){
 export async function updateMatch(match){
     await updateRecord('qc-partidas', match, 'id', match.id);
 }
+
+export function invertSidesMatch(match, setMatch){
+    setMatch({
+        ...match,
+        jogador1: match.jogador2,
+        jogador2: match.jogador1,
+        campeao1: match.campeao2,
+        campeao2: match.campeao1,
+        bans1: match.bans2,
+        bans2: match.bans1,
+        selecao1: match.selecao2,
+        selecao2: match.selecao1,
+    });
+}
+
+export function getRandomSidesMatch(match, setMatch){
+    if((Math.floor(Math.random() * 2) + 1) % 2 == 0){
+        invertSidesMatch(match, setMatch);
+    }
+}

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const Styled = styled.label`
     display: flex;
     flex-direction: column;
+    gap: 5px;
     width: 100%;
     select{
         background-color: ${palette.inputs.bg};
@@ -35,10 +36,14 @@ const Styled = styled.label`
 export function SelectInput({ name, array, info, value, setValue }){
     return(
         <Styled>
+            {name && <span>{name}:</span>}
             <select name={name}
-                value={value}
-                onChange={setValue} 
+                value={value || ''}
+                onChange={e => setValue(e.target.value)} 
             >
+                {value == null && ( 
+                    <option value=''>Selecione...</option>
+                )}
                 {array.map(item => {
                     return(
                         <option key={item.id} value={item.id}>

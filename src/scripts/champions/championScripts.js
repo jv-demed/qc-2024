@@ -36,3 +36,8 @@ export function getChampionLoadingScreenImg(id, list){
         return `${apiConfig.imgLoadingScreenUrl}${champ.id}_0.jpg`;
     }
 }
+
+export function getRandomChampionPick(list){
+    const randomIndex = Math.floor(Math.random() * list.length);
+    return list[randomIndex].key;
+}

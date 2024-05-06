@@ -4,6 +4,8 @@ import { screens } from '@/assets/screens';
 
 const Styled = styled.label`
     display: flex;
+    flex-direction: column;
+    gap: 5px;
     width: ${props => props.$width};
     input{
         background-color: ${palette.inputs.bg};
@@ -27,14 +29,15 @@ const Styled = styled.label`
     }
 `
 
-export function TextInput({ type, text, setText, width, placeholder }){
+export function TextInput({ type, name, text, setText, width, placeholder }){
     return(
         <Styled $width={width || '100%'}>
+            {name && <span>{name}</span>}
             <input
-                type={type ? type : 'text'}
+                type={type || 'text'}
                 value={text}
                 onChange={setText}
-                placeholder={placeholder ? placeholder : '...'}
+                placeholder={placeholder || '...'}
             />
         </Styled>
     );

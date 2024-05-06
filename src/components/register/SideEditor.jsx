@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import { getChampionLoadingScreenImg, getChampionName } from '@/scripts/champions/championScripts';
+import { getChampionLoadingScreenImg, getChampionName, getRandomChampionPick } from '@/scripts/champions/championScripts';
 import { screens } from '@/assets/screens';
 import { ChampionInput } from '../inputs/ChampionInput';
+import { useEffect, useState } from 'react';
+import { getNumericArrayByStr } from '@/scripts/utils/stringScripts';
+import { icons } from '@/assets/icons';
 
 const Styled = styled.div`
     display: flex;
@@ -44,7 +47,19 @@ const Styled = styled.div`
     }
 `
 
-export function SideEditor({ match, list, setList, champ, setChamp, bans, bansInfo, setBans, mirror }){
+export function SideEditor({ match, list, champ, setChamp, bansInfo, bansNum, setBanList, mirror }){
+    
+    const [bans, setBans] = useState(Array(bansNum).fill(null));
+
+    useEffect(() => {
+        const numericArray = getNumericArrayByStr(match[bansInfo]);
+        const newBans = [];
+        for(let i = 0; i < bansNum; i++){
+            newBans.push(numericArray[i] != undefined ? numericArray[i] : null);
+        }
+        setBans(newBans);
+    }, [match]);
+    
     return(
         <Styled 
             $direction={mirror ? 'row-reverse' : 'row'}
@@ -56,14 +71,14 @@ export function SideEditor({ match, list, setList, champ, setChamp, bans, bansIn
                     {bans.map((ban, i) => {
                         return(
                             <ChampionInput 
-                                key={`ban-${i+1}`}
+                                key={`ban${i+1}-${ban}`}
                                 championList={list}
                                 value={ban}
-                                classMatch={match.classe}
                                 setValue={e => {
                                     const updatedBans = [...bans];
-                                    updatedBans[i] = parseInt(e.target.value);
-                                    setBans(bansInfo, updatedBans);
+                                    updatedBans[i] = parseInt(e);
+                                    setBans(updatedBans);
+                                    setBanList(updatedBans);
                                 }}
                             />
                         )
@@ -77,6 +92,7 @@ export function SideEditor({ match, list, setList, champ, setChamp, bans, bansIn
                     value={champ || null}
                     classMatch={match.classe}
                     setValue={setChamp}
+                    random
                 />
             </div>
             <img className='champion-img'
